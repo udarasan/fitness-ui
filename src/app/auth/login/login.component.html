@@ -1,1 +1,26 @@
-<p>login works!</p>
+
+<div class="login-container">
+  <div class="row" style="padding-left: 30%;padding-top: 4%;color: white;font-size: 60px;font-weight: 900;" >Ringo Fitness Center</div>
+  <div style="padding-left: 35%;padding-top: 10%;">
+    <mat-card>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="loginForm">
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" />
+          </mat-form-field>
+
+          <div class="row" style="padding-left: 150px;">
+            <button mat-raised-button color="accent" (click)="login()">Login</button>
+            <button style="margin-left: 5px;" mat-raised-button color="accent" (click)="register()">Register</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
