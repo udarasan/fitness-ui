@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UserProfileRequest, UserRole} from "../../model/userDTO";
+import {LoginService} from "../../service/login.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration',
@@ -8,38 +11,37 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class RegistrationComponent {
   regForm= new FormGroup({
-    username: new FormControl('', [ Validators.required ]),
+    name: new FormControl('', [ Validators.required ]),
     email: new FormControl('', [ Validators.required ,Validators.email ]),
     password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
   });
 
 
-
-  constructor(
-
-  ) {
-
-  }
+  constructor(private loginService:LoginService,private router: Router) {}
 
   public save() {
-   /* let userProfileRequest = new UserProfileRequest();
+   let userProfileRequest = new UserProfileRequest();
     userProfileRequest.role=UserRole.USER;
-    userProfileRequest.email=this.regiseterForm.controls['email'].value;
-    userProfileRequest.name=this.regiseterForm.controls['userName'].value;
-    userProfileRequest.password=this.regiseterForm.controls['password'].value;
+    userProfileRequest.username = this.regForm.get('name')?.value as string;
+    userProfileRequest.password = this.regForm.get('password')?.value as string;
+    userProfileRequest.email=this.regForm.get('email')?.value as string;
 
-    this.profileService.addUser(userProfileRequest).subscribe(
-      {
-        next: (v) => {
-          this.snackBar.open("User Registered", 'Ok', { horizontalPosition: 'center', verticalPosition : 'bottom', duration: 4000 });},
-        error: (e) =>  {   this.snackBar.open('Error in  process. Try again.', 'Ok', { horizontalPosition: 'center', verticalPosition : 'top', duration: 3000 });},
-        complete: () => {
-
-          this.router.navigate(['']);
+    this.loginService.registration(userProfileRequest).subscribe(
+      (response) => {
+        console.log('Form submitted successfully', response);
+        if (response.status==200){
+          this.router.navigate(['/auth/login']);
         }
+
+      },
+      (error) => {
+        console.error('Error submitting the form', error);
       }
-    )*/
+    );
+
+
   }
+
 
   login() {
 
