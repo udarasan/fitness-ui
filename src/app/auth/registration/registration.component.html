@@ -6,23 +6,27 @@
       <mat-card-title>Registration</mat-card-title>
       <mat-card-content>
         <form [formGroup]="regForm">
+
           <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
             <input matInput formControlName="name" />
           </mat-form-field>
+
           <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
             <input matInput type="email" formControlName="email" />
           </mat-form-field>
+
           <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
             <input matInput type="password" formControlName="password" />
           </mat-form-field>
 
           <div class="row" style="padding-left: 150px;">
-            <button mat-raised-button color="accent" (click)="save()">Save</button>
-            <button style="margin-left: 5px;" mat-raised-button color="accent" (click)="login()">Login</button>
+            <button mat-raised-button  (click)="login()">Login</button>
+            <button style="margin-left: 5px;" mat-raised-button color="accent" (click)="register()">Register</button>
           </div>
+
         </form>
       </mat-card-content>
     </mat-card>

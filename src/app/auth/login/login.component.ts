@@ -20,12 +20,15 @@ export class LoginComponent {
 
   login() {
     const formData = new LoginRequest();
+    //set data into object
     formData.email = this.loginForm.get('username')?.value as string;
     formData.password = this.loginForm.get('password')?.value as string;
 
+    //send API Request
     this.loginService.login(formData).subscribe(
       (response) => {
         console.log('Form submitted successfully', response);
+
         switch (response.data?.role!!.toString()) {
           case "ADMIN":
             localStorage.setItem('userProfileId', response.data.id!!.toString());

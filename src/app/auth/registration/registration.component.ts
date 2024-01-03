@@ -19,13 +19,17 @@ export class RegistrationComponent {
 
   constructor(private loginService:LoginService,private router: Router) {}
 
-  public save() {
+  public register() {
+
    let userProfileRequest = new UserProfileRequest();
+
+   //set data into object
     userProfileRequest.role=UserRole.USER;
     userProfileRequest.username = this.regForm.get('name')?.value as string;
     userProfileRequest.password = this.regForm.get('password')?.value as string;
     userProfileRequest.email=this.regForm.get('email')?.value as string;
 
+    //send API Request
     this.loginService.registration(userProfileRequest).subscribe(
       (response) => {
         console.log('Form submitted successfully', response);
